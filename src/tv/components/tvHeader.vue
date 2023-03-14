@@ -1,8 +1,10 @@
 <template>
-  <div style="width: 300px; height: 300px; position: relative">
-    <img :width="200" :src="Logo" style="height: 200px; width: 200px" />
+  <a-layout>
+    <a-layout-header>
+      <a-image :width="50" :src="Logo"></a-image>
+    </a-layout-header>
+  </a-layout>
 
-  </div>
 </template>
 
 <script lang="ts" setup>
