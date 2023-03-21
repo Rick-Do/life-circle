@@ -7,7 +7,12 @@ const router = createRouter({
         {
             path: "/",
             name: "home",
-            component: ()=>import("@/view/Root.vue")
+            redirect:"dashboard",
+        },
+        {
+          path:"/dashboard",
+          name:"dashboard",
+          component: () => import("@/view/Root.vue")
         },
         {
           path: "/login",
