@@ -1,68 +1,40 @@
 <template>
   <a-layout style="min-height: 80px">
-    <a-layout-header class="header">
-        <div class="header-left">
-          <img :src="logoPng"  alt="logo "/>
-          <a class="mobile-collapse">
-            <menu-outlined style="color:#fff" />
-          </a>
+    <a-layout-header class="header-all">
+      <div class="header-left">
+        <img :src="logoPng"  alt="logo "/>
+        <a class="mobile-collapse">
+          <menu-outlined style="color:#fff" />
+        </a>
+      </div>
+      <div class="header-right">
+        <IconPark icon="full-screen-one" theme="outline" size="20" stroke-width="3" class="screen-icon"  @click="toFullScreen()"/>
+        <div>
+
         </div>
+      </div>
     </a-layout-header>
     <a-layout>
       <a-layout-sider width="270" >
-        <a-menu :selectedKeys="selectedKeys" style="height: 100%; border-right: 0" mode="inline" theme="light">
-          <a-sub-menu key="sub1">
-            <template #title>
-              <span>
-                <user-outlined />
-                subnav 1
-              </span>
-            </template>
-            <a-menu-item key="1">option1</a-menu-item>
-            <a-menu-item key="2">option2</a-menu-item>
-            <a-menu-item key="3">option3</a-menu-item>
-            <a-menu-item key="4">option4</a-menu-item>
-          </a-sub-menu>
-
-        </a-menu>
+       <Menu />
       </a-layout-sider>
     </a-layout>
   </a-layout>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import {
-  PieChartOutlined,
-  DesktopOutlined,
-  UserOutlined,
-  TeamOutlined,
-  FileOutlined,
   MenuOutlined,
 } from '@ant-design/icons-vue';
+import IconPark from "@/components/common/IconPark.vue"
 import logoPng from "@/assets/images/logo.png";
-import {defineComponent, ref } from 'vue';
-export default defineComponent({
-  components: {
-    PieChartOutlined,
-    DesktopOutlined,
-    UserOutlined,
-    TeamOutlined,
-    FileOutlined,
-    MenuOutlined,
-  },
-  data() {
-    return {
-      collapsed: ref<boolean>(false),
-      selectedKeys: ref<string[]>(["1"]),
-      logoPng,
-    }
-  },
-  methods: {
-
-  }
-})
-
+import Menu from  "@/components/menu/Menu.vue"
+import {CommonFuction} from "@/utils/CommonUtil";
+const {toFullScreen} = CommonFuction()
 </script>
 <style scoped lang="less" >
+  .header-all {
+    background: #fff;
+  }
   .header-left {
     position: relative;
     display: flex;
@@ -74,6 +46,15 @@ export default defineComponent({
     width: 270px;
     padding: 10px;
     background: #303549;
+  }
+  .header-right {
+    line-height: 80px;
+    display: flex;
+  }
+
+  .screen-icon {
+    cursor: pointer;
+    padding: 6px 20px;
   }
   .ant-layout-header {
     padding: 0;
