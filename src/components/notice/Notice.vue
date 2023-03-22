@@ -5,7 +5,10 @@
     <template #title>
 
     </template>
-    <IconPark icon="remind" ></IconPark>
+    <div class="notice-icon">
+      <IconPark icon="remind" stroke-width="3" size="16" ></IconPark>
+      <a-badge dot class="badge-status-attr" ></a-badge>
+    </div>
   </a-popover>
 </template>
 
@@ -13,6 +16,12 @@
 import IconPark from "@/components/common/IconPark.vue"
 </script>
 
-<style scoped>
+<style scoped lang="less">
+  .notice-icon {
+    padding-top: 4px;
+    margin-right: 20px;
+  }
+  .badge-status-attr {
 
+  }
 </style>
