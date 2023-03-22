@@ -9,8 +9,25 @@
       </div>
       <div class="header-right">
         <IconPark icon="full-screen-one" theme="outline" size="20" stroke-width="3" class="screen-icon"  @click="toFullScreen()"/>
-        <div>
-
+        <div class="personal-info">
+          <notice />
+          <a-image :src="Avatar" alt="头像标识" width="40px" height="40px" :preview="false"/>
+          <a-dropdown>
+            <div style="cursor: pointer" @click.prevent>
+              <span>John Down</span>
+              <down-outlined />
+            </div>
+            <template #overlay>
+              <a-menu>
+                <a-menu-item style="display: flex"
+                             :key="item.id"
+                             v-for="item in userSettingConfig">
+                  <IconPark :icon="item.icon"></IconPark>
+                  <span>{{item.name}}</span>
+                </a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
         </div>
       </div>
     </a-layout-header>
@@ -24,12 +41,17 @@
 <script lang="ts" setup>
 import {
   MenuOutlined,
+  DownOutlined
 } from '@ant-design/icons-vue';
 import IconPark from "@/components/common/IconPark.vue"
 import logoPng from "@/assets/images/logo.png";
+import Avatar from "@/assets/images/avatar-4.jpg"
 import Menu from  "@/components/menu/Menu.vue"
+import Notice from  "@/components/notice/Notice.vue"
 import {CommonFuction} from "@/utils/CommonUtil";
+import {Root} from "@/utils/Root"
 const {toFullScreen} = CommonFuction()
+const {userSettingConfig} = Root();
 </script>
 <style scoped lang="less" >
   .header-all {
@@ -50,6 +72,7 @@ const {toFullScreen} = CommonFuction()
   .header-right {
     line-height: 80px;
     display: flex;
+    justify-content: space-between;
   }
 
   .screen-icon {
@@ -60,6 +83,10 @@ const {toFullScreen} = CommonFuction()
     padding: 0;
     height: 80px;
     line-height: 80px;
+  }
+  .personal-info {
+    padding: 0 10px;
+    display: flex;
   }
   .mobile-collapse {
     position: absolute;

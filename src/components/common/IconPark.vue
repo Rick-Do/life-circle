@@ -7,7 +7,7 @@
 import type {Icon} from "@icon-park/vue-next/lib/runtime";
 
 defineProps<{
-  icon: Icon,
+  icon: Icon | string,
   theme?: 'outline' | 'filled' | 'two-tone' | 'multi-color',
   size?: number | string,
   spin?: boolean,
