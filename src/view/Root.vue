@@ -3,7 +3,7 @@
     <a-layout-header class="header-all">
       <div class="header-left">
         <img :src="logoPng"  alt="logo "/>
-        <a class="mobile-collapse">
+        <a class="mobile-collapse" @click="()=>(showSider=!showSider)">
           <menu-outlined style="color:#fff" />
         </a>
       </div>
@@ -11,8 +11,8 @@
         <IconPark icon="full-screen-one" theme="outline" size="20" stroke-width="3" class="screen-icon"  @click="toFullScreen()"/>
         <div class="personal-info">
           <notice />
-          <a-image :src="Avatar" alt="头像标识" width="40px" height="40px" :preview="false"/>
-          <a-dropdown>
+          <a-avatar :src="Avatar" style="margin-top: 20px" size="large"> </a-avatar>
+          <a-dropdown class="user-info-setting">
             <div style="cursor: pointer" @click.prevent>
               <span>John Down</span>
               <down-outlined />
@@ -32,9 +32,14 @@
       </div>
     </a-layout-header>
     <a-layout>
-      <a-layout-sider width="270" >
-       <Menu />
+      <a-layout-sider width="270" v-if="showSider">
+        <Menu />
       </a-layout-sider>
+      <a-layout>
+        <a-layout-content class="layout-content" >
+          <RouterView />
+        </a-layout-content>
+      </a-layout>
     </a-layout>
   </a-layout>
 </template>
@@ -50,8 +55,10 @@ import Menu from  "@/components/menu/Menu.vue"
 import Notice from  "@/components/notice/Notice.vue"
 import {CommonFuction} from "@/utils/CommonUtil";
 import {Root} from "@/utils/Root"
+import {ref} from "vue";
 const {toFullScreen} = CommonFuction()
 const {userSettingConfig} = Root();
+const showSider = ref<boolean>(true);
 </script>
 <style scoped lang="less" >
   .header-all {
@@ -73,6 +80,7 @@ const {userSettingConfig} = Root();
     line-height: 80px;
     display: flex;
     justify-content: space-between;
+    //box-shadow: 10px -10px 11px rgba(0, 0, 0, 0.13);
   }
 
   .screen-icon {
@@ -96,5 +104,15 @@ const {userSettingConfig} = Root();
     padding: 5px 9px;
     top: 24px;
     line-height: 23px;
+  }
+  .user-info-setting {
+    margin-left: 20px;
+    padding-right: 20px;
+    height: 75px;
+  }
+  .layout-content {
+    padding: 10px;
+    overflow: inherit;
+    box-shadow: inset 0 0 11px rgba(0, 0, 0, 0.13);
   }
 </style>

@@ -7,12 +7,15 @@ const router = createRouter({
         {
             path: "/",
             name: "home",
-            redirect:"dashboard",
-        },
-        {
-          path:"/dashboard",
-          name:"dashboard",
-          component: () => import("@/view/Root.vue")
+            component:()=>import("@/view/Root.vue"),
+            redirect: "index",
+            children:[
+                {
+                    path: "index",
+                    name: "首页",
+                    component: ()=>import("@/view/dashboard/Dashboard.vue")
+                }
+            ]
         },
         {
           path: "/login",
