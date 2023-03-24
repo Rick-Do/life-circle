@@ -1,9 +1,9 @@
 <template>
   <div>
     <small-card>
-      <template #icon>
+<!--      <template #icon>
         <IconPark icon="chart-pie" size="24" ></IconPark>
-      </template>
+      </template>-->
     </small-card>
   </div>
 </template>

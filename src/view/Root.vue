@@ -113,6 +113,6 @@ const showSider = ref<boolean>(true);
   .layout-content {
     padding: 10px;
     overflow: inherit;
-    box-shadow: inset 0 0 11px rgba(0, 0, 0, 0.13);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.13);
   }
 </style>
